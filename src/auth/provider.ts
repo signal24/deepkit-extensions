@@ -40,7 +40,7 @@ export class Auth {
     }
 
     static async decodeResetToken<T>(token: string): Promise<ResetToken<T>> {
-        const tokenBuf = Buffer.from('token', 'base64');
+        const tokenBuf = Buffer.from(token, 'base64');
         const generationTime = tokenBuf.readUInt32BE(0) * 1000;
         const randomBuf = tokenBuf.slice(4, 20);
         const serializedData = tokenBuf.slice(20).toString('utf8');
